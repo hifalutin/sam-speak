@@ -37,17 +37,25 @@
 		// Create a new speech utterance
 		const utterance = new SpeechSynthesisUtterance(number);
 
+		// Set language to US English
+		utterance.lang = 'en-US';
+
 		// Configure voice settings for more natural speech
 		utterance.rate = 0.9; // Slightly slower for clarity
 		utterance.pitch = 1.0;
 		utterance.volume = 1.0;
 
-		// Try to use a high-quality voice if available
+		// Try to use a high-quality English voice if available
 		const voices = synth.getVoices();
 		const preferredVoice = voices.find(voice =>
-			voice.name.includes('Google') ||
-			voice.name.includes('Enhanced') ||
-			voice.name.includes('Premium')
+			voice.lang.startsWith('en') && (
+				voice.name.includes('Google') ||
+				voice.name.includes('Enhanced') ||
+				voice.name.includes('Premium') ||
+				voice.name.includes('Samantha') ||
+				voice.name.includes('Karen') ||
+				voice.name.includes('Natural')
+			)
 		);
 
 		if (preferredVoice) {
