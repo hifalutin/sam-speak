@@ -14,16 +14,70 @@
 		<div class="container">
 			<h1>Sam Speak</h1>
 			<div class="grid">
-				<div class="rectangle">1</div>
-				<div class="rectangle">2</div>
-				<div class="rectangle">3</div>
-				<div class="rectangle">4</div>
-				<div class="rectangle">5</div>
-				<div class="rectangle">6</div>
+				<div class="rectangle" data-number="1">1</div>
+				<div class="rectangle" data-number="2">2</div>
+				<div class="rectangle" data-number="3">3</div>
+				<div class="rectangle" data-number="4">4</div>
+				<div class="rectangle" data-number="5">5</div>
+				<div class="rectangle" data-number="6">6</div>
 			</div>
 		</div>
 	</body>
 </html>
+
+<script>
+	// Initialize Web Speech API
+	const synth = window.speechSynthesis;
+
+	// Function to speak a number
+	function speakNumber(number: string) {
+		// Cancel any ongoing speech
+		synth.cancel();
+
+		// Create a new speech utterance
+		const utterance = new SpeechSynthesisUtterance(number);
+
+		// Configure voice settings for more natural speech
+		utterance.rate = 0.9; // Slightly slower for clarity
+		utterance.pitch = 1.0;
+		utterance.volume = 1.0;
+
+		// Try to use a high-quality voice if available
+		const voices = synth.getVoices();
+		const preferredVoice = voices.find(voice =>
+			voice.name.includes('Google') ||
+			voice.name.includes('Enhanced') ||
+			voice.name.includes('Premium')
+		);
+
+		if (preferredVoice) {
+			utterance.voice = preferredVoice;
+		}
+
+		// Speak the number
+		synth.speak(utterance);
+	}
+
+	// Add click event listeners to all rectangles
+	document.addEventListener('DOMContentLoaded', () => {
+		// Load voices (they may not be immediately available)
+		if (synth.getVoices().length === 0) {
+			synth.addEventListener('voiceschanged', () => {
+				console.log('Voices loaded');
+			});
+		}
+
+		const rectangles = document.querySelectorAll('.rectangle');
+		rectangles.forEach((rectangle) => {
+			rectangle.addEventListener('click', () => {
+				const number = rectangle.getAttribute('data-number');
+				if (number) {
+					speakNumber(number);
+				}
+			});
+		});
+	});
+</script>
 
 <style>
 	* {
@@ -67,6 +121,8 @@
 		font-size: 24px;
 		font-weight: bold;
 		transition: transform 0.3s ease;
+		cursor: pointer;
+		user-select: none;
 	}
 
 	.rectangle:hover {
