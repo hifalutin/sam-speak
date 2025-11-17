@@ -1,0 +1,17 @@
+{
+  "name": "Sam Speak",
+  "short_name": "Sam Speak",
+  "description": "Voice communication app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#3498db",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+.landing-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000 0%, #434343 100%);
+  padding: 20px;
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.landing-content h1 {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.mode-button {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mode-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  font-size: 72px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+.label {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.description {
+  font-size: 18px;
+  color: #666;
+}
+
+.controller {
+  background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+}
+
+.controller .label,
+.controller .description,
+.controller .icon {
+  color: white;
+}
+
+.editor {
+  background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+}
+
+.editor .label,
+.editor .description,
+.editor .icon {
+  color: white;
+}
+
+@media (min-width: 600px) {
+  .button-container {
+    flex-direction: row;
+  }
+}
